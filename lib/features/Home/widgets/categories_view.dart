@@ -13,50 +13,52 @@ class CategoriesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LimitedBox(
-      maxHeight: 320,
-      child: ListView.builder(
-        itemCount: (categoryList.length / 2).ceil(),
-        itemBuilder: (BuildContext context, int index) {
-          return Row(
-            children: [
-              GestureDetector(
-                onTap: () {
-                  if (index == 1) {
-                    navigate(context, "Work", workList);
-                  } else {
-                    navigate(context, "Personal", personalList);
-                  }
-                },
-                child: MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: CategoryItem(
-                    categoryList: categoryList,
-                    index: index * 2,
-                  ),
-                ),
-              ),
-              const SizedBox(width: 10),
-              if ((index * 2 + 1) < categoryList.length)
+    return Expanded(
+      child: LimitedBox(
+        maxHeight: 320,
+        child: ListView.builder(
+          itemCount: (categoryList.length / 2).ceil(),
+          itemBuilder: (BuildContext context, int index) {
+            return Row(
+              children: [
                 GestureDetector(
                   onTap: () {
                     if (index == 1) {
-                      navigate(context, "Shopping", shoppingList);
+                      navigate(context, "Work", workList);
                     } else {
-                      navigate(context, "Learning", learningList);
+                      navigate(context, "Personal", personalList);
                     }
                   },
                   child: MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: CategoryItem(
                       categoryList: categoryList,
-                      index: index * 2 + 1,
+                      index: index * 2,
                     ),
                   ),
                 ),
-            ],
-          );
-        },
+                const SizedBox(width: 10),
+                if ((index * 2 + 1) < categoryList.length)
+                  GestureDetector(
+                    onTap: () {
+                      if (index == 1) {
+                        navigate(context, "Shopping", shoppingList);
+                      } else {
+                        navigate(context, "Learning", learningList);
+                      }
+                    },
+                    child: MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: CategoryItem(
+                        categoryList: categoryList,
+                        index: index * 2 + 1,
+                      ),
+                    ),
+                  ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }

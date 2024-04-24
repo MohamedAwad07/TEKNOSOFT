@@ -457,9 +457,6 @@ Widget noTasksBuilder({
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(
-              height: 70.0,
-            ),
             Padding(
               padding: EdgeInsets.all(20.0),
               child: Text(

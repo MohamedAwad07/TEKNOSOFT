@@ -25,7 +25,6 @@ class CategoryItem extends StatelessWidget {
         ),
         child: Container(
           width: mediaQueryWidth(context) * 0.42,
-          height: mediaQueryHeight(context) * 0.18,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(
               15,

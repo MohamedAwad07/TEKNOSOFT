@@ -39,10 +39,11 @@ class HomeBody extends StatelessWidget {
               child: cubit.dateShow(),
             ),
           ),
-          SizedBox(
-            width: mediaQueryWidth(context),
-            height: mediaQueryHeight(context) * 0.65,
-            child: noTasksBuilder(taskView: dates, isIgnoring: false),
+          Expanded(
+            child: SizedBox(
+              width: mediaQueryWidth(context),
+              child: noTasksBuilder(taskView: dates, isIgnoring: false),
+            ),
           ),
         ],
       ),
