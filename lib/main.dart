@@ -4,11 +4,13 @@ import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:todo_app/shared/cubit/cubit.dart';
 import 'package:todo_app/shared/observer.dart';
 import 'features/Home/todoHome.dart';
-
-void main()  {
+import 'dart:io' show Platform;
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  sqfliteFfiInit();
-  databaseFactory = databaseFactoryFfi;
+  if (Platform.isWindows) {
+    databaseFactory = databaseFactoryFfi;
+    sqfliteFfiInit();
+  }
   Bloc.observer = MyBlocObserver();
   runApp(const MyApp());
 }

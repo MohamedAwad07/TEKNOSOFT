@@ -36,7 +36,7 @@ class HomeBody extends StatelessWidget {
             ),
             child: SizedBox(
               height: 160,
-              child: cubit.dateShow(),
+              child: AppCubit.get(context).dateShow(),
             ),
           ),
           Expanded(

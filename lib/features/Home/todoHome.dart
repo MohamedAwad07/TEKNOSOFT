@@ -208,7 +208,7 @@ class HomeScreen extends StatelessWidget {
                                     ),
                                     defaultTextForm(
                                       controller: priorityController,
-                                      keyBoardType: TextInputType.datetime,
+                                      keyBoardType: TextInputType.text,
                                       label: 'Priority',
                                       preIcon: Icons.priority_high_outlined,
                                       validate: (value) {
