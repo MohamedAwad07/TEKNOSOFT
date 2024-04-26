@@ -334,7 +334,7 @@ Widget buildTaskItem(Map model, context, bool isIgnoring) => IgnorePointer(
                                             defaultTextForm(
                                               controller: priorityController,
                                               keyBoardType:
-                                                  TextInputType.datetime,
+                                                  TextInputType.text,
                                               label: 'Priority',
                                               preIcon:
                                                   Icons.priority_high_outlined,
