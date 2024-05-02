@@ -49,12 +49,12 @@ Widget buildTaskItem(Map model, context, bool isIgnoring) => IgnorePointer(
         background: const Padding(
           padding: EdgeInsets.all(8.0),
           child: Align(
-            alignment: Alignment.centerLeft,
+              alignment: Alignment.centerLeft,
               child: Icon(
-            Icons.delete,
-            color: Colors.red,
-            size: 45,
-          )),
+                Icons.delete,
+                color: Colors.red,
+                size: 45,
+              )),
         ),
         child: Padding(
           padding: const EdgeInsetsDirectional.only(
@@ -80,21 +80,14 @@ Widget buildTaskItem(Map model, context, bool isIgnoring) => IgnorePointer(
                   ),
                   child: IconButton(
                     onPressed: () {
-                      AppCubit.get(context).updateData(
-                          value: "Done",
-                          id: model['id'],
-                          colToUpdate: 'status');
+                      AppCubit.get(context).updateData(value: "Done", id: model['id'], colToUpdate: 'status');
                     },
                     icon: Tooltip(
                       message: "Add to done Tasks",
                       child: Icon(
-                        model['status'] == "Done"
-                            ? Icons.sentiment_very_satisfied_sharp
-                            : Icons.sentiment_dissatisfied,
+                        model['status'] == "Done" ? Icons.sentiment_very_satisfied_sharp : Icons.sentiment_dissatisfied,
                         size: 28,
-                        color: model['status'] == "Done"
-                            ? Colors.lightBlueAccent
-                            : Colors.indigo,
+                        color: model['status'] == "Done" ? Colors.lightBlueAccent : Colors.indigo,
                       ),
                     ),
                   ),
@@ -162,8 +155,7 @@ Widget buildTaskItem(Map model, context, bool isIgnoring) => IgnorePointer(
                             height: 12,
                             width: 12,
                             decoration: BoxDecoration(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(20)),
+                              borderRadius: const BorderRadius.all(Radius.circular(20)),
                               gradient: LinearGradient(
                                 begin: Alignment.topLeft,
                                 end: Alignment.bottomRight,
@@ -200,8 +192,7 @@ Widget buildTaskItem(Map model, context, bool isIgnoring) => IgnorePointer(
                       height: 12,
                       width: 12,
                       decoration: BoxDecoration(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(20)),
+                        borderRadius: const BorderRadius.all(Radius.circular(20)),
                         color: priorityColorPicker(model['priority']),
                       ),
                     ),
@@ -258,22 +249,17 @@ Widget buildTaskItem(Map model, context, bool isIgnoring) => IgnorePointer(
                                             ),
                                             defaultTextForm(
                                               controller: fromController,
-                                              keyBoardType:
-                                                  TextInputType.datetime,
+                                              keyBoardType: TextInputType.datetime,
                                               label: 'From',
                                               onTap: () {
                                                 showTimePicker(
                                                   context: context,
                                                   initialTime: TimeOfDay.now(),
                                                 ).then((value) => {
-                                                      fromController.text =
-                                                          value!
-                                                              .format(context)
-                                                              .toString(),
+                                                      fromController.text = value!.format(context).toString(),
                                                     });
                                               },
-                                              preIcon:
-                                                  Icons.watch_later_outlined,
+                                              preIcon: Icons.watch_later_outlined,
                                               validate: (value) {
                                                 if (value!.isEmpty) {
                                                   return 'Time must not be empty';
@@ -287,28 +273,22 @@ Widget buildTaskItem(Map model, context, bool isIgnoring) => IgnorePointer(
                                             ),
                                             defaultTextForm(
                                               controller: toController,
-                                              keyBoardType:
-                                                  TextInputType.datetime,
+                                              keyBoardType: TextInputType.datetime,
                                               label: 'To',
                                               onTap: () {
                                                 showTimePicker(
                                                   context: context,
                                                   initialTime: TimeOfDay.now(),
                                                 ).then((value) => {
-                                                      toController.text = value!
-                                                          .format(context)
-                                                          .toString(),
+                                                      toController.text = value!.format(context).toString(),
                                                     });
                                               },
-                                              preIcon:
-                                                  Icons.watch_later_outlined,
+                                              preIcon: Icons.watch_later_outlined,
                                               validate: (value) {
                                                 if (value!.isEmpty) {
                                                   return 'Time must not be empty';
                                                 } else {
-                                                  return validateDate(
-                                                      fromController,
-                                                      value.toString());
+                                                  return validateDate(fromController, value.toString());
                                                 }
                                               },
                                             ),
@@ -333,11 +313,9 @@ Widget buildTaskItem(Map model, context, bool isIgnoring) => IgnorePointer(
                                             ),
                                             defaultTextForm(
                                               controller: priorityController,
-                                              keyBoardType:
-                                                  TextInputType.text,
+                                              keyBoardType: TextInputType.text,
                                               label: 'Priority',
-                                              preIcon:
-                                                  Icons.priority_high_outlined,
+                                              preIcon: Icons.priority_high_outlined,
                                               validate: (value) {
                                                 if (value!.isEmpty) {
                                                   return 'priority must not be empty';
@@ -354,16 +332,12 @@ Widget buildTaskItem(Map model, context, bool isIgnoring) => IgnorePointer(
                                 )
                                 .closed
                                 .then((value) => {
-                                      AppCubit.get(context)
-                                          .changeButtonSheetState(
+                                      AppCubit.get(context).changeButtonSheetState(
                                         isShow: false,
                                         icon: Icons.add,
                                       ),
-                                      AppCubit.get(context).searchForDates(
-                                          DateFormat('yyyy-MM-dd')
-                                              .format(selectedDatee)),
-                                      AppCubit.get(context)
-                                          .deleteData(id: model['id']),
+                                      AppCubit.get(context).searchForDates(DateFormat('yyyy-MM-dd').format(selectedDatee)),
+                                      AppCubit.get(context).deleteData(id: model['id']),
                                     });
 
                             AppCubit.get(context).changeButtonSheetState(
@@ -406,9 +380,7 @@ Widget buildTaskItem(Map model, context, bool isIgnoring) => IgnorePointer(
                                 );
                         },
                         icon: Icon(
-                          model['important'] == "Yes"
-                              ? Icons.star
-                              : Icons.star_border_sharp,
+                          model['important'] == "Yes" ? Icons.star : Icons.star_border_sharp,
                           size: 25,
                           color: Colors.teal,
                         ),
@@ -435,8 +407,7 @@ Widget noTasksBuilder({
     ConditionalBuilder(
       condition: taskView.isNotEmpty,
       builder: (context) => ListView.separated(
-        itemBuilder: (context, index) =>
-            buildTaskItem(taskView[index], context, isIgnoring),
+        itemBuilder: (context, index) => buildTaskItem(taskView[index], context, isIgnoring),
         separatorBuilder: (context, index) => Container(),
         itemCount: taskView.length,
       ),

@@ -12,9 +12,13 @@ class ListsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return Padding(
+      padding: const EdgeInsetsDirectional.only(
+        end: 25,
+      ),
       child: Container(
-        width: mediaQueryWidth(context) * 0.90,
+        width: mediaQueryWidth(context),
+        height: mediaQueryHeight(context) * 0.35,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(
