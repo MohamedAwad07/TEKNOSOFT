@@ -200,6 +200,10 @@ class HomeScreen extends StatelessWidget {
                                         if (value!.isEmpty) {
                                           return 'Category must not be empty';
                                         }
+                                        else if (value.toString() != "Personal" && value != "Work" && value != "Shopping" && value != "Learning")
+                                         {
+                                           return "Category must be Personal , Work , Shopping , Learning only";
+                                         }
                                         return null;
                                       },
                                     ),
@@ -214,6 +218,10 @@ class HomeScreen extends StatelessWidget {
                                       validate: (value) {
                                         if (value!.isEmpty) {
                                           return 'priority must not be empty';
+                                        }
+                                        else if(value != "High" && value != "Mid" && value != "Low")
+                                        {
+                                          return "Priority must be High , Mid , Low only";
                                         }
                                         return null;
                                       },
