@@ -105,12 +105,12 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
-  void getDataFromDatabase(database) {
+  Future<void> getDataFromDatabase(database) async {
     newTasks = [];
     doneTasks = [];
     importantList = [];
     priorityList = [];
-    database.rawQuery('SELECT * FROM tasks').then((value) {
+    await database.rawQuery('SELECT * FROM tasks').then((value) {
       value.forEach((element) {
         if (element['status'] == 'New') {
           newTasks.add(element);
@@ -123,7 +123,7 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
-  void getData(database) {
+  Future<void> getData(database) async {
     personalList = [];
     learningList = [];
     workList = [];
@@ -135,7 +135,7 @@ class AppCubit extends Cubit<AppStates> {
     priorityList = [];
     myDayList = [];
     upcomingList = [];
-    database.rawQuery('SELECT * FROM tasks').then((value) {
+    await database.rawQuery('SELECT * FROM tasks').then((value) {
       String sui = DateFormat('yyyy-MM-dd').format(selectedDatee);
 
       value.forEach((element) {
@@ -180,12 +180,12 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
-  void updateData({
+  Future<void> updateData({
     required String colToUpdate,
     required String value,
     required int id,
-  }) {
-    database.rawUpdate(
+  }) async {
+    await database.rawUpdate(
       'UPDATE tasks SET "$colToUpdate" = ? WHERE id = ?',
       [value, id],
     ).then((value) {
@@ -195,10 +195,10 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
-  void deleteData({
+  Future<void> deleteData({
     required int id,
-  }) {
-    database.rawDelete('DELETE FROM tasks WHERE id = ?', [id]).then((value) {
+  }) async {
+    await database.rawDelete('DELETE FROM tasks WHERE id = ?', [id]).then((value) {
       if (kDebugMode) {
         print("Deleted Successfully");
       }
@@ -208,9 +208,9 @@ class AppCubit extends Cubit<AppStates> {
   }
 
 
-  void searchForDates(String selectedDate) {
+  Future<void> searchForDates(String selectedDate) async {
     dates = [];
-    database.rawQuery('SELECT * FROM tasks WHERE date = ? AND status = ?',
+    await database.rawQuery('SELECT * FROM tasks WHERE date = ? AND status = ?',
         [selectedDate, "New"]).then((value) {
       for (var element in value) {
         dates.add(element);
@@ -259,21 +259,21 @@ class AppCubit extends Cubit<AppStates> {
     );
   }
 
-  void myDay(String selectedDate) {
+  Future<void> myDay(String selectedDate) async {
     myDayList = [];
-    database.rawQuery(
+    await database.rawQuery(
         'SELECT * FROM tasks WHERE date = ?', [selectedDate]).then((value) {
       for (var element in value) {
         myDayList.add(element);
       }
       manga[0] = myDayList.length;
-     // emit(AppMyDayState());
+      //emit(AppMyDayState());
     });
   }
 
-  void upComing(String selectedDate) {
+  Future<void>  upComing(String selectedDate) async {
     upcomingList = [];
-    database.rawQuery('SELECT * FROM tasks WHERE date > ? AND status = ?',
+    await database.rawQuery('SELECT * FROM tasks WHERE date > ? AND status = ?',
         [selectedDate, "New"]).then((value) {
       for (var element in value) {
         upcomingList.add(element);
@@ -282,9 +282,9 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
-  void importantListT() {
+  Future<void>  importantListT() async {
     importantList = [];
-    database.rawQuery('SELECT * FROM tasks WHERE important = ?',
+    await database.rawQuery('SELECT * FROM tasks WHERE important = ?',
         ["Yes"]).then((value) {
       for (var element in value) {
         importantList.add(element);
@@ -293,12 +293,12 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
-  void getCategories() {
+  Future<void> getCategories() async {
     personalList = [];
     learningList = [];
     workList = [];
     shoppingList = [];
-    database.rawQuery('SELECT * FROM tasks',
+    await database.rawQuery('SELECT * FROM tasks',
     ).then((value) {
       for (var element in value) {
         if (element['category'] == "Personal") {
@@ -323,9 +323,9 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
-  void getPriority(){
+  Future<void> getPriority()async {
     priorityList = [];
-    database.rawQuery('SELECT * FROM tasks').then((value) {
+    await database.rawQuery('SELECT * FROM tasks').then((value) {
       value.forEach((element) {
         if(element['priority'] != "Manga" && element['status'] == "New")
         {

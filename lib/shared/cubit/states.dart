@@ -22,3 +22,5 @@ class AppGetDatesState extends AppStates {}
 class AppSearchForDatesState extends AppStates {}
 
 class AppGetDataState extends AppStates {}
+
+class AppMyDayState extends AppStates {}

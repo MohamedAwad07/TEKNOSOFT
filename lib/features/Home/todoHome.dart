@@ -64,19 +64,18 @@ class HomeScreen extends StatelessWidget {
                       message: "Go to My Lists",
                       child: IconButton(
                         color: Colors.black45,
-                        onPressed: () {
+                        onPressed: () async {
+                          await cubit.myDay(
+                              DateFormat('yyyy-MM-dd').format(selectedDatee));
+                          await cubit.upComing(
+                              DateFormat('yyyy-MM-dd').format(selectedDatee));
+                          await cubit.importantListT();
+                          await cubit.getCategories();
+                          await cubit.getPriority();
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => const ListsScreen()));
-                          cubit.myDay(
-                              DateFormat('yyyy-MM-dd').format(selectedDatee));
-                          cubit.upComing(
-                              DateFormat('yyyy-MM-dd').format(selectedDatee));
-                          cubit.importantListT();
-                          cubit.getCategories();
-                          cubit.getPriority();
-
                         },
                         icon: const Icon(
                           Icons.format_list_bulleted,
